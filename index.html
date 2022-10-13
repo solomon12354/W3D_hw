@@ -63,7 +63,12 @@ class Lamp {
     
     if (this.myStatus === true) {
         this.hue = color;
-        $('#'+this.name).css('backgroundColor', `hsl(${color},90%,80%)`);
+	if(this.change){
+		$('#'+this.name).css('backgroundColor', `hsl(${color},90%,80%)`);
+	}else{
+		$('#'+this.name).css('backgroundColor', `hsl(${color},90%,24%)`);
+	}
+        
         //$('#'+this.name).text(this.name + ' is on');
     }else{
         $('#'+this.name).css('backgroundColor', `hsl(${this.hue},90%,24%)`);
@@ -73,7 +78,9 @@ class Lamp {
   toggle() {
     this.myStatus = ! this.myStatus;
     if (this.myStatus === true) {
-      $('#'+this.name).css('backgroundColor', `hsl(${this.hue},90%,80%)`);
+	
+	$('#'+this.name).css('backgroundColor', `hsl(${this.hue},90%,80%)`);
+      
       //$('#'+this.name).text(this.name + ' is on');
     } else {
       $('#'+this.name).css('backgroundColor', `hsl(${this.hue},90%,24%)`);
@@ -83,10 +90,11 @@ class Lamp {
 
   startBlink() {
     var that = this;
+    var color = getRandomInt(360);
     that.blind = setInterval(function() {
       
       
-      that.flash(getRandomInt(360));
+      that.flash(color);
     }, that.sec);
     //clearInterval(that.blind);
   }
@@ -112,8 +120,12 @@ for (let i = 0; i < amount ; i++) {
 
 
 
-function hello() {
-   alert(1);
+function sleep(milliseconds) 
+{ 
+var start = new Date().getTime(); 
+while(1)
+     if ((new Date().getTime() - start) > milliseconds)
+          break;
 }
 
 var isA = false;
@@ -123,7 +135,9 @@ function aaa() {
    
    for (let i = 0; i < amount ; i++) {
       light[i].myStatus = ! light[i].myStatus;
+      var s = getRandomInt(500);
       if(isB){
+	  sleep(s);
           light[i].myStatus = ! light[i].myStatus;
           light[i].stopBlink();
           light[i].sec = 500;
@@ -131,6 +145,7 @@ function aaa() {
           isA = true;
       }
       else if(light[i].myStatus){
+          sleep(s);
           light[i].sec = 500;
           light[i].startBlink();
           isA = true;
@@ -143,14 +158,19 @@ function aaa() {
    }
    
    isB = false;
+   var elem = document.getElementById("0.5_seconds");
+    if (elem.value=="0.5 seconds") elem.value = "Close";
+    else elem.value = "0.5 seconds";
    return;
 }
 function bbb() {
+   var s = getRandomInt(500);
    var seconds = getRandomInt(1000) + 1000;
-   
    for (let i = 0; i < amount ; i++) {
       light[i].myStatus = ! light[i].myStatus;
+      
       if(isA){
+          sleep(s);
           light[i].myStatus = ! light[i].myStatus;
           light[i].stopBlink();
           light[i].sec = seconds;
@@ -158,7 +178,7 @@ function bbb() {
           isB = true;
       }
       else if(light[i].myStatus){
-          
+          sleep(s);
           light[i].sec = seconds;
           light[i].startBlink();
           isB = true;
@@ -170,14 +190,16 @@ function bbb() {
       
    }
    isA = false;
-   
+   var elem = document.getElementById("random");
+    if (elem.value=="Random") elem.value = "Close";
+    else elem.value = "Random";
    return;
 }
 
 
 </script>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<CENTER> <button onclick="aaa()">0.5 seconds</button>  <button onclick="bbb()">Random</button></CENTER>
+<CENTER> <input onclick="aaa()" type="button" id="0.5_seconds" value="0.5 seconds"></input>  <input onclick="bbb()" type="button" id="random" value="Random"></input></CENTER>
 
 
 
