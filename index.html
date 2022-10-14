@@ -19,6 +19,13 @@ body {
   border-radius: 50%;
   display: inline-block;
 }
+.input {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 400px;
+  background-color: white;
+}
 </style>
 </head>
 
@@ -108,9 +115,8 @@ class Lamp {
 }
 var amount = 10;
 var light = [];
-var BlinkId = [];
-var le = [40,50,60];
-var to = [20,40,60];
+
+
 Lamp.id = 0; // class variable
 for (let i = 0; i < amount ; i++) {
    let ll = new Lamp ('light');
@@ -158,9 +164,18 @@ function aaa() {
    }
    
    isB = false;
-   var elem = document.getElementById("0.5_seconds");
-    if (elem.value=="0.5 seconds") elem.value = "Close";
-    else elem.value = "0.5 seconds";
+   var elemA = document.getElementById("0.5_seconds");
+   var elemB = document.getElementById("random");
+    if (elemA.value==="0.5 seconds" && elemB.value==="Random") {
+	elemA.value = "Power off";
+	}
+    else if(elemA.value==="Power off" && elemB.value==="Random"){ 
+	elemA.value = "0.5 seconds";
+	elemB.value = "Random";
+   }else if(elemA.value==="0.5 seconds" && elemB.value==="Power off"){
+	elemA.value = "Power off";
+	elemB.value = "Random";
+	}
    return;
 }
 function bbb() {
@@ -190,18 +205,27 @@ function bbb() {
       
    }
    isA = false;
-   var elem = document.getElementById("random");
-    if (elem.value=="Random") elem.value = "Close";
-    else elem.value = "Random";
+   var elemA = document.getElementById("0.5_seconds");
+   var elemB = document.getElementById("random");
+    if (elemA.value==="0.5 seconds" && elemB.value==="Random") {
+	elemB.value = "Power off";
+	}
+    else if(elemA.value==="Power off" && elemB.value==="Random"){ 
+	elemA.value = "0.5 seconds";
+	elemB.value = "Power off";
+   }else if(elemA.value==="0.5 seconds" && elemB.value==="Power off"){
+	elemA.value = "0.5 seconds";
+	elemB.value = "Random";
+	}
    return;
 }
 
 
 </script>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
 <CENTER> <input onclick="aaa()" type="button" id="0.5_seconds" value="0.5 seconds"></input>  <input onclick="bbb()" type="button" id="random" value="Random"></input></CENTER>
-
-
 
 </body>
 
