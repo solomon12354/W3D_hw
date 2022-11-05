@@ -153,15 +153,31 @@ function floor(){
   return group;
 }
 
+var controls = 0;
+
+function cameraChange(x,y,z){
+  
+  camera.fov = 50;
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.near = 1;
+  camera.far = 2000;
+  camera .position.x = x;
+  camera .position.y = y;
+  camera .position.z = z;
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
+}
+
+
+
 function init() {
 
-  
   scene = new THREE.Scene();
 
   renderer = new THREE.WebGLRenderer();
   
   var width = window.innerWidth;
   var height = window.innerHeight;
+
   renderer.setSize((width-25),(height-25));
   
   
@@ -169,10 +185,11 @@ function init() {
   document.body.appendChild(renderer.domElement);
 
   camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000);
+  
   camera.position.x = 0;
   camera.position.y = 600;
   camera.position.z = 500;
-  let controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
 
   ////////////////////////////////////////////////////////////////
   var gridXZ = new THREE.GridHelper(600, 80, 'red', 'white');
@@ -258,7 +275,7 @@ function render() {
 }
 
 </script>
-
+<center><input onclick="cameraChange(-500,600,0)" type="button" id="left" value="Left"></input><input onclick="cameraChange(0,600,500)" type="button" id="center" value="Center"></input><input onclick="cameraChange(500,600,0)" type="button" id="right" value="Right"></input></center>
 </body>
 
 
