@@ -163,7 +163,7 @@ function buildSphere(rad, pos) {
   
   var sphere = new THREE.Mesh(new THREE.SphereGeometry(rad, 10, 10), new THREE.MeshNormalMaterial());
 
-  var woodTex = new THREE.TextureLoader().load("wood2.jpg");
+  var woodTex = new THREE.TextureLoader().load("https://i.imgur.com/DrvlmNW.jpg?1");
   var mat = new THREE.MeshBasicMaterial({map:woodTex});
   var boxTop = new THREE.Mesh (new THREE.BoxGeometry (50,10,100),mat);
   var boxLeg1 = new THREE.Mesh (new THREE.BoxGeometry (50,30,10),mat);
@@ -208,7 +208,7 @@ function buildChair(rad, pos) {
   
   var sphere = new THREE.Mesh(new THREE.SphereGeometry(rad, 10, 10), new THREE.MeshNormalMaterial());
 
-  var woodTex = new THREE.TextureLoader().load("wood1.jpeg");
+  var woodTex = new THREE.TextureLoader().load("https://img.imynest.com/uploads/20200609/4D/4D3A96A0EA2Dw900h598.jpeg");
   var mat = new THREE.MeshBasicMaterial({map:woodTex});
   var boxTop = new THREE.Mesh (new THREE.BoxGeometry (20,2.5,22.5),mat);
   var boxLeg1 = new THREE.Mesh (new THREE.BoxGeometry (2.5,15,22.5),mat);
@@ -260,7 +260,7 @@ function init() {
   $("#container").append(renderer.domElement);
 
   ////////////////////////////////////////////////
-  var woodTex = new THREE.TextureLoader().load("grass.jpg");
+  var woodTex = new THREE.TextureLoader().load("https://previews.123rf.com/images/praewpailin/praewpailin1912/praewpailin191200215/135149480-artificial-green-grass-background-green-grass-floor-texture-ideal-for-use-top-view-sport-background-.jpg");
   var mat = new THREE.MeshBasicMaterial({map:woodTex});
   var floor = new THREE.Mesh (new THREE.BoxGeometry (300,5,300),mat);
   floor.position.set (0,-1,0);
