@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<style type="text/css">
+
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-position: center;
+  background-size: 50% 80%;
+}
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: hsl(120, 50%, 50%);
+  border-radius: 50%;
+  display: inline-block;
+}
+.container
+{
+  width:100%;
+  height:500px;
+  
+}
+.sidebar
+{
+  width:300px;
+  background-color: yellow;
+  border:2px dotted inherit;
+  float:right;
+  height:120%;
+}
+.extraContent
+{
+  float:left;
+  
+}
+
+</style>
+</head>
+
+<body> 
+<CENTER><h1> Hw2 I4B28</h1></CENTER>
+
+<div id='bkgd' style=""></div>
+
+<script src="https://threejs.org/build/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+function innerProduct(x,y,z){
+  if(x + y + z === 0){
+     return "";
+  }else{
+     return x + y + z;
+  }
+}
+
+function outerProduct(a){
+    if(isNaN(a)){
+	return "";
+    }
+    return a;
+    
+}
+
+jQuery(function($) {
+  var answer = parseInt($('#x1').val()) + parseInt($('#x2').val()) + parseInt($('#x3').val());
+  var vec1 = new THREE.Vector3(parseInt($('#x1').val()),parseInt($('#x2').val()),parseInt($('#x3').val())); 
+  var vec2 = new THREE.Vector3(parseInt($('#y1').val()),parseInt($('#y2').val()),parseInt($('#y3').val())); 
+  var vec3 = new THREE.Vector3().multiplyVectors(vec1, vec2);
+  var x = vec3.getComponent(0);
+  var y = vec3.getComponent(1);
+  var z = vec3.getComponent(2);
+  var outX = outerProduct(vec1.getComponent(1) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(1));
+  var outY = outerProduct(-1 * (vec1.getComponent(0) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(0)));
+  var outZ = outerProduct(vec1.getComponent(0) * vec2.getComponent(1) - vec1.getComponent(1) * vec2.getComponent(0));
+
+  /*
+  var outX = outerProduct(vec1.getComponent(0),vec2.getComponent(0),vec2.getComponent(1),vec2.getComponent(2));
+  var outY = outerProduct(vec1.getComponent(1),vec2.getComponent(0),vec2.getComponent(1),vec2.getComponent(2));
+  var outZ = outerProduct(vec1.getComponent(2),vec2.getComponent(0),vec2.getComponent(1),vec2.getComponent(2));
+  */
+  answer = outerProduct(innerProduct(x,y,z));
+  $('#mirror').text(answer);
+  $('#mirror1').text(outX);
+  $('#mirror2').text(outY);
+  $('#mirror3').text(outZ);
+
+  $('#x1').on('input', function() {
+    vec1.setComponent(0,parseInt($('#x1').val()));
+    vec3.multiplyVectors(vec1, vec2);
+    var x = vec3.getComponent(0);
+    var y = vec3.getComponent(1);
+    var z = vec3.getComponent(2);
+    answer = outerProduct(innerProduct(x,y,z));
+    outX = outerProduct(vec1.getComponent(1) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(1));
+    outY = outerProduct(-1 * (vec1.getComponent(0) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(0)));
+    outZ = outerProduct(vec1.getComponent(0) * vec2.getComponent(1) - vec1.getComponent(1) * vec2.getComponent(0));
+
+    $('#mirror').text(answer);
+    $('#mirror1').text(outX);
+    $('#mirror2').text(outY);
+    $('#mirror3').text(outZ);
+  });
+  $('#x2').on('input', function() {
+    vec1.setComponent(1,parseInt($('#x2').val()));
+    vec3.multiplyVectors(vec1, vec2);
+    var x = vec3.getComponent(0);
+    var y = vec3.getComponent(1);
+    var z = vec3.getComponent(2);
+    answer = outerProduct(innerProduct(x,y,z));
+    outX = outerProduct(vec1.getComponent(1) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(1));
+    outY = outerProduct(-1 * (vec1.getComponent(0) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(0)));
+    outZ = outerProduct(vec1.getComponent(0) * vec2.getComponent(1) - vec1.getComponent(1) * vec2.getComponent(0));
+
+    $('#mirror').text(answer);
+    $('#mirror1').text(outX);
+    $('#mirror2').text(outY);
+    $('#mirror3').text(outZ);
+  });
+  $('#x3').on('input', function() {
+    vec1.setComponent(2,parseInt($('#x3').val()));
+    vec3.multiplyVectors(vec1, vec2);
+    var x = vec3.getComponent(0);
+    var y = vec3.getComponent(1);
+    var z = vec3.getComponent(2);
+    answer = outerProduct(innerProduct(x,y,z));
+    outX = outerProduct(vec1.getComponent(1) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(1));
+    outY = outerProduct(-1 * (vec1.getComponent(0) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(0)));
+    outZ = outerProduct(vec1.getComponent(0) * vec2.getComponent(1) - vec1.getComponent(1) * vec2.getComponent(0));
+
+    $('#mirror').text(answer);
+    $('#mirror1').text(outX);
+    $('#mirror2').text(outY);
+    $('#mirror3').text(outZ);
+  });
+  $('#y1').on('input', function() {
+    vec2.setComponent(0,parseInt($('#y1').val()));
+    vec3.multiplyVectors(vec1, vec2);
+    var x = vec3.getComponent(0);
+    var y = vec3.getComponent(1);
+    var z = vec3.getComponent(2);
+    answer = outerProduct(innerProduct(x,y,z));
+    outX = outerProduct(vec1.getComponent(1) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(1));
+    outY = outerProduct(-1 * (vec1.getComponent(0) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(0)));
+    outZ = outerProduct(vec1.getComponent(0) * vec2.getComponent(1) - vec1.getComponent(1) * vec2.getComponent(0));
+
+    $('#mirror').text(answer);
+    $('#mirror1').text(outX);
+    $('#mirror2').text(outY);
+    $('#mirror3').text(outZ);
+  });
+  $('#y2').on('input', function() {
+    vec2.setComponent(1,parseInt($('#y2').val()));
+    vec3.multiplyVectors(vec1, vec2);
+    var x = vec3.getComponent(0);
+    var y = vec3.getComponent(1);
+    var z = vec3.getComponent(2);
+    answer = outerProduct(innerProduct(x,y,z));
+    outX = outerProduct(vec1.getComponent(1) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(1));
+    outY = outerProduct(-1 * (vec1.getComponent(0) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(0)));
+    outZ = outerProduct(vec1.getComponent(0) * vec2.getComponent(1) - vec1.getComponent(1) * vec2.getComponent(0));
+
+    $('#mirror').text(answer);
+    $('#mirror1').text(outX);
+    $('#mirror2').text(outY);
+    $('#mirror3').text(outZ);
+  });
+  $('#y3').on('input', function() {
+    vec2.setComponent(2,parseInt($('#y3').val()));
+    vec3.multiplyVectors(vec1, vec2);
+    var x = vec3.getComponent(0);
+    var y = vec3.getComponent(1);
+    var z = vec3.getComponent(2);
+    answer = outerProduct(innerProduct(x,y,z));
+    outX = outerProduct(vec1.getComponent(1) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(1));
+    outY = outerProduct(-1 * (vec1.getComponent(0) * vec2.getComponent(2) - vec1.getComponent(2) * vec2.getComponent(0)));
+    outZ = outerProduct(vec1.getComponent(0) * vec2.getComponent(1) - vec1.getComponent(1) * vec2.getComponent(0));
+
+    $('#mirror').text(answer);
+    $('#mirror1').text(outX);
+    $('#mirror2').text(outY);
+    $('#mirror3').text(outZ);
+  });
+});
+</script>
+<div class="container">
+<div class = "extraContent">
+<div style="border-width: 3px; border-style:solid ; width: 300px;  border-color: rgb(255, 172, 85); background-color: #FFB7C5;  text-align: left;">
+v vector: <br>
+________________________<br>
+<input id="x1" type="number" step="any" value="" style="background-color: white;"></input><br><input id="x2" type="number" step="any" value="" style="background-color: white;"></input><br><input id="x3" type="number" step="any" value="" style="background-color: white;"></input>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="border-width: 3px; border-style:solid ; width: 300px;  border-color: rgb(255, 172, 85); background-color: #6AFFE2;  text-align: left;">
+w vector: <br>
+________________________<br>
+<input id="y1" type="number" step="any" value="" style="background-color: white;"></input><br><input id="y2" type="number" step="any" value="" style="background-color: white;"></input><br><input id="y3" type="number" step="any" value="" style="background-color: white;"></input>
+</div>
+</div>
+<div class="sidebar">
+inner product<br>
+________________________
+<br>
+v . w = <div style="border-width: 3px; border-style:solid ; width: 150px;  border-color: rgb(255, 172, 85); background-color: white;  text-align: left;"><p id="mirror"></p></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+________________________
+<br>
+outer product<br>
+________________________<br>
+v * w = <br>
+x = <div style="border-width: 3px; border-style:solid ; width: 150px;  border-color: rgb(255, 172, 85);  background-color: white; text-align: left;"><p id="mirror1"></p></div>
+<br>
+y = <div style="border-width: 3px; border-style:solid ; width: 150px;  border-color: rgb(255, 172, 85);  background-color: white; text-align: left;"><p id="mirror2"></p></div>
+<br>
+z = <div style="border-width: 3px; border-style:solid ; width: 150px;  border-color: rgb(255, 172, 85);  background-color: white; text-align: left;"><p id="mirror3"></p></div>
+<br>
+
+</div>
+</div>
+
+</body>
+
+</html>
